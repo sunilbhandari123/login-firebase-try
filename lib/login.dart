@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -35,7 +36,15 @@ class _LoginState extends State<Login> {
           ),
           const SizedBox(height: 80),
           FlatButton(
-            onPressed: (() {}),
+            onPressed: (() {
+              FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password:password)
+              .then((User){
+                Navigator.of(context).pushReplacementNamed('/Home');}).catchError((e){
+                  print(e);
+                });
+                }
+              
+            ),
             child: Text(
               'Sign In',
               style: TextStyle(color: Colors.white),

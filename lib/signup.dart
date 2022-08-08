@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUp extends StatefulWidget {
   SignUp({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class _SignUpState extends State<SignUp> {
   final _auth = FirebaseAuth.instance;
 
   late String email;
-
+  final _firestore =FirebaseFirestore.instance;
   late String password;
 
   @override
@@ -39,24 +40,32 @@ class _SignUpState extends State<SignUp> {
             obscureText: true,
           ),
           const SizedBox(height: 20),
-          FlatButton(
-            onPressed: (() async {
-              try {
-                final newuser = await _auth.createUserWithEmailAndPassword(
-                    email: email, password: password);
-                if (newuser != null) {
-                  Navigator.pushNamed(context, '/Home');
-                }
-              } catch (e) {
+          FlatButton(onPressed: () {
+             FirebaseAuth.instance.createUserWithEmailAndPassword(
+                  email: email, password: password)
+                  .then((signedInUser){
+                     _firestore.collection('users')
+                         .add({'email' : email, 'pass' : password,})
+                     .then((value){
+                       if (signedInUser!= null){
+                         Navigator.pushNamed(context, '/homepage');
+                       }
+                     })
+                     .catchError((e){
+                       print(e);
+                     })
+                     ;}
+                     )
+                  .catchError((e){
                 print(e);
-              }
-            }),
-            child: Text(
-              'Sign Up',
-              style: TextStyle(color: Colors.white),
-            ),
-            color: Colors.brown,
-          )
+              });
+
+            },
+            child:
+            Text('Sign Up', style: TextStyle(color: Colors.white)),
+            
+            color:Colors.brown)
+          
         ]));
   }
 }

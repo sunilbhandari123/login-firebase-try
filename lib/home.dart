@@ -1,17 +1,21 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
+import 'package:proj/user.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
+ class Home extends StatelessWidget {
+ 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-    );
+    return FlatButton(
+        onPressed: () {
+          signOutGoogle();
+          Navigator.pop(context);
+        },
+        child: Text("Sign Out"));
   }
-}
+  
+
+  }
+  
+

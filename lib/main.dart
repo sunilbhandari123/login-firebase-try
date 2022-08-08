@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:proj/google.dart';
+import 'package:proj/home.dart';
 import 'package:proj/login.dart';
 import 'package:proj/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'home.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: Login(),
-      routes: {'/SignUp': (_) => SignUp(),
-       '/Home': (_) => const Home()
+      home: const Google(),
+      routes: {'/Google': (_) => Home(),
+       '/Home': (_) => const Google()
       },
     );
   }
