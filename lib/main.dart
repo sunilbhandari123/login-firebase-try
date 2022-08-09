@@ -23,8 +23,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.brown,
       ),
       home: const Google(),
-      routes: {'/Google': (_) => Home(),
-       '/Home': (_) => const Google()
+      routes: {
+        '/Google': (context) => Home(),
+       //'/Home': (_) => const Google()
       },
     );
   }

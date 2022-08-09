@@ -3,8 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:proj/user.dart';
 
- class Home extends StatelessWidget {
+ class Home extends StatefulWidget {
  
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
@@ -12,10 +17,9 @@ import 'package:proj/user.dart';
           signOutGoogle();
           Navigator.pop(context);
         },
-        child: Text("Sign Out"));
+        child: const Text("Sign Out"),
+        color: Colors.brown,);
   }
-  
-
-  }
+}
   
 
