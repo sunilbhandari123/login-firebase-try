@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proj/google.dart';
 import 'package:proj/home.dart';
 import 'package:proj/login.dart';
+import 'package:proj/phone%20login/phone.dart';
 import 'package:proj/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -22,11 +23,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: const Google(),
-      routes: {
-        '/Google': (context) => Home(),
+      home:  Phone(),
+     // routes: {
+       // '/Google': (context) => Home(),
        //'/Home': (_) => const Google()
-      },
+      //},
     );
   }
 }
